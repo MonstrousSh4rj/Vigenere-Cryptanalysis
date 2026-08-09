@@ -5,4 +5,18 @@ input_paragraph=input("Paste your paragraph here: ")
 t_length = len(input_paragraph)
 t_length_index=1+t_length
 print(t_length)
-piles=[[] for _ in range(t_length_index)]
+key_length=6
+piles=[[] for _ in range(key_length)]
+index=0
+while index<key_length:
+    for a in range(index, t_length, 6):
+        if input_paragraph[a]!=' ':
+            piles[index].append(input_paragraph[a])
+    index+=1
+
+print(piles[0])
+print(piles[1])
+print(piles[2])
+print(piles[3])
+print(piles[4])
+print(piles[5])
