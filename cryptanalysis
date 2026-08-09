@@ -1,1 +1,8 @@
+import math
+
 print("Vigenere cipher key founder")
+input_paragraph=input("Paste your paragraph here: ")
+t_length = len(input_paragraph)
+t_length_index=1+t_length
+print(t_length)
+piles=[[] for _ in range(t_length_index)]
