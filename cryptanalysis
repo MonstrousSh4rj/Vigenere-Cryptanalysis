@@ -13,30 +13,38 @@ while index<key_length:
             piles[index].append(input_paragraph[a])
     index+=1
 
-f_index=len(piles[0])
-pile_alpha_sum=int(0)
-pile_length=len(piles[0])
-used_character=[]
-used_character=['0']
-used_character_i=int(1)
-result=int(1)
-for b in range(0, f_index):
-    result=1
-    alpha_count=int(0)
-    for d in range(0, used_character_i):
-         if piles[0][b]==used_character[d]:
-              result=0
-    if result==1:
-         for c in range(0, f_index):
-                        if piles[0][b]==piles[0][c]:
-                            used_character.append(piles[0][b])
-                            used_character_i=len(used_character)
-                            alpha_count+=1
-    t_pile_sum=alpha_count*(alpha_count-1)
-    pile_alpha_sum+=t_pile_sum
 
-pile_length=pile_length*(pile_length-1)
-f_IC=pile_alpha_sum/pile_length
-print(f_IC)
-print(" ")
-print(piles[0])
+all_piles_IC=[]
+for e in range(0, key_length):
+      pile_alpha_sum=int(0)
+      used_character=[]
+      used_character=['0']
+      used_character_i=int(1)
+      result=int(1)
+      f_index=len(piles[e])
+      pile_length=len(piles[e])
+      for b in range(0, f_index):
+          result=1
+          alpha_count=int(0)
+          for d in range(0, used_character_i):
+               if piles[e][b]==used_character[d]:
+                     result=0
+          if result==1:
+               for c in range(0, f_index):
+                    if piles[e][b]==piles[0][c]:
+                        used_character.append(piles[0][b])
+                        used_character_i=len(used_character)
+                        alpha_count+=1
+          t_pile_sum=alpha_count*(alpha_count-1)
+          pile_alpha_sum+=t_pile_sum
+      pile_length=pile_length*(pile_length-1)
+      f_IC=pile_alpha_sum/pile_length
+      all_piles_IC.append(f_IC)
+
+print(all_piles_IC)
+average=int(0)
+length_pileIC=len(all_piles_IC)
+for f in range(0, length_pileIC):
+     average+=all_piles_IC[f]
+average=average/key_length
+print(average)
