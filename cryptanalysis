@@ -3,7 +3,6 @@ import math
 print("Vigenere cipher key founder")
 input_paragraph=input("Paste your paragraph here: ")
 t_length = len(input_paragraph)
-t_length_index=1+t_length
 print(t_length)
 key_length=6
 piles=[[] for _ in range(key_length)]
@@ -14,9 +13,30 @@ while index<key_length:
             piles[index].append(input_paragraph[a])
     index+=1
 
+f_index=len(piles[0])
+pile_alpha_sum=int(0)
+pile_length=len(piles[0])
+used_character=[]
+used_character=['0']
+used_character_i=int(1)
+result=int(1)
+for b in range(0, f_index):
+    result=1
+    alpha_count=int(0)
+    for d in range(0, used_character_i):
+         if piles[0][b]==used_character[d]:
+              result=0
+    if result==1:
+         for c in range(0, f_index):
+                        if piles[0][b]==piles[0][c]:
+                            used_character.append(piles[0][b])
+                            used_character_i=len(used_character)
+                            alpha_count+=1
+    t_pile_sum=alpha_count*(alpha_count-1)
+    pile_alpha_sum+=t_pile_sum
+
+pile_length=pile_length*(pile_length-1)
+f_IC=pile_alpha_sum/pile_length
+print(f_IC)
+print(" ")
 print(piles[0])
-print(piles[1])
-print(piles[2])
-print(piles[3])
-print(piles[4])
-print(piles[5])
