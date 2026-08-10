@@ -47,4 +47,50 @@ for f in range(0, length_pileIC):
      average+=all_piles_IC[f]
 average=average/key_length
 print(average)
-print(piles)
+
+english_frequency={'A': 8.17, 'B': 1.49, 'C': 2.78, 'D': 4.25, 'E': 12.70, 'F': 2.23,
+    'G': 2.02, 'H': 6.09, 'I': 6.97, 'J': 0.15, 'K': 0.77, 'L': 4.03,
+    'M': 2.41, 'N': 6.75, 'O': 7.51, 'P': 1.93, 'Q': 0.10, 'R': 5.99,
+    'S': 6.33, 'T': 9.06, 'U': 2.76, 'V': 0.98, 'W': 2.36, 'X': 0.15,
+    'Y': 1.97, 'Z': 0.07}
+english_number={'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5,
+    'G': 6, 'H': 7, 'I': 8, 'J': 9, 'K': 10, 'L': 11,
+    'M': 12, 'N': 13, 'O': 14, 'P': 15, 'Q': 16, 'R': 17,
+    'S': 18, 'T': 19, 'U': 20, 'V': 21, 'W': 22, 'X': 23,
+    'Y': 24, 'Z': 25}
+
+english_number_rev={0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F',
+    6: 'G', 7: 'H', 8: 'I', 9: 'J', 10: 'K', 11: 'L',
+    12: 'M', 13: 'N', 14: 'O', 15: 'P', 16:'Q', 17: 'R',
+    18: 'S', 19: 'T', 20: 'U', 21: 'V', 22: 'W', 23: 'X',
+    24: 'Y', 25: 'Z'}
+
+piles_in_numbers=[]
+lengthy=len(piles[0])
+for i in range(0, lengthy):
+     letter=piles[0][i].upper()
+     number=english_number[letter]
+     piles_in_numbers.append(number)
+
+storing_results=[]
+for u in range(0, 26):
+     result_numpiles=[]
+     countalphas=int(0)
+     chi=float(0)
+     chisum=int(0)
+     for y in range(0, lengthy):
+          numm=(piles_in_numbers[y]-u)%26
+          result_numpiles.append(numm)
+     for o in range(0, 26):
+          for t in range(0, lengthy):
+               if result_numpiles[t]==o:
+                    countalphas+=1
+          alphabetp=english_number_rev[o]
+          frequency=english_frequency[alphabetp]/100*lengthy
+          chi=(countalphas-frequency)**2/frequency
+          result_numpiles.append(chi)
+     for q in range(0, lengthy):
+          chisum+=result_numpiles[q]
+     storing_results.append(chisum)
+
+print(storing_results)
