@@ -29,11 +29,12 @@ for e in range(0, key_length):
                if piles[e][b]==used_character[d]:
                      result=0
           if result==1:
-               for c in range(0, f_index):
-                    if piles[e][b]==piles[0][c]:
-                        used_character.append(piles[0][b])
-                        used_character_i=len(used_character)
-                        alpha_count+=1
+               zero_length = len(piles[0])
+               for c in range(0, zero_length):
+                    if piles[e][b] == piles[0][c]:
+                         used_character.append(piles[e][b])
+                         used_character_i = len(used_character)
+                         alpha_count += 1
           t_pile_sum=alpha_count*(alpha_count-1)
           pile_alpha_sum+=t_pile_sum
       pile_length=pile_length*(pile_length-1)
@@ -95,7 +96,6 @@ for up in range(0, key_length):
                chisum+=chi
           storing_results[up].append(chisum)
 
-print(storing_results)
 final_answer=[]
 for un in range(0, key_length):
      total_length=len(storing_results[un])
