@@ -9,10 +9,9 @@ piles=[[] for _ in range(key_length)]
 index=0
 while index<key_length:
     for a in range(index, t_length, 6):
-        if input_paragraph[a]!=' ':
+        if input_paragraph[a]>='A' and input_paragraph[a]<='Z' or input_paragraph[a]>='a'and input_paragraph[a]<='z':
             piles[index].append(input_paragraph[a])
     index+=1
-
 
 all_piles_IC=[]
 for e in range(0, key_length):
@@ -48,3 +47,4 @@ for f in range(0, length_pileIC):
      average+=all_piles_IC[f]
 average=average/key_length
 print(average)
+print(piles)
