@@ -65,32 +65,48 @@ english_number_rev={0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F',
     18: 'S', 19: 'T', 20: 'U', 21: 'V', 22: 'W', 23: 'X',
     24: 'Y', 25: 'Z'}
 
-piles_in_numbers=[]
-lengthy=len(piles[0])
-for i in range(0, lengthy):
-     letter=piles[0][i].upper()
-     number=english_number[letter]
-     piles_in_numbers.append(number)
+piles_in_numbers=[[] for _ in range(key_length)]
+for l in range(0, key_length):
+     lengthy=len(piles[l])
+     for i in range(0, lengthy):
+          letter=piles[l][i].upper()
+          number=english_number[letter]
+          piles_in_numbers[l].append(number)
 
-storing_results=[]
-for u in range(0, 26):
-     result_numpiles=[]
-     countalphas=int(0)
-     chi=float(0)
-     chisum=int(0)
-     for y in range(0, lengthy):
-          numm=(piles_in_numbers[y]-u)%26
-          result_numpiles.append(numm)
-     for o in range(0, 26):
-          for t in range(0, lengthy):
-               if result_numpiles[t]==o:
-                    countalphas+=1
-          alphabetp=english_number_rev[o]
-          frequency=english_frequency[alphabetp]/100*lengthy
-          chi=(countalphas-frequency)**2/frequency
-          result_numpiles.append(chi)
-     for q in range(0, lengthy):
-          chisum+=result_numpiles[q]
-     storing_results.append(chisum)
+storing_results=[[] for _ in range(key_length)]
+for up in range(0, key_length):
+     lengthy2=len(piles[up])
+     for u in range(0, 26):
+          result_numpiles=[]
+          countalphas=int(0)
+          chi=float(0)
+          chisum=int(0)
+          for y in range(0, lengthy2):
+               numm=(piles_in_numbers[up][y]-u)%26
+               result_numpiles.append(numm)
+          for o in range(0, 26):
+               countalphas=int(0)
+               for t in range(0, lengthy2):
+                    if result_numpiles[t]==o:
+                         countalphas+=1
+               alphabetp=english_number_rev[o]
+               frequency=english_frequency[alphabetp]/100*lengthy2
+               chi=(countalphas-frequency)**2/frequency
+               chisum+=chi
+          storing_results[up].append(chisum)
 
 print(storing_results)
+final_answer=[]
+for un in range(0, key_length):
+     total_length=len(storing_results[un])
+     smallest_num=storing_results[un][0]
+     for yun in range(1, total_length):
+          if storing_results[un][yun]<smallest_num:
+               smallest_num=storing_results[un][yun]
+     for find in range(0, total_length):
+          if storing_results[un][find]==smallest_num:
+               index_in_result=find
+     characterf=english_number_rev[index_in_result]
+     final_answer.append(characterf)
+
+print(final_answer)
