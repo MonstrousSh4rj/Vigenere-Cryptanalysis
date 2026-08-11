@@ -1,9 +1,16 @@
 import math
 
+print("===========================")
+print("")
 print("Vigenere cipher key founder")
-input_paragraph = input("Paste your paragraph here: ")
+print("===========================")
+print("")
+print("Paste your paragraph here: ")
+input_paragraph = input("")
 t_length = len(input_paragraph)
-print(t_length)
+print("")
+print("")
+print("Total characters in given paragraph: ",t_length)
 
 final_IC_list = []
 
@@ -46,17 +53,18 @@ for ko in range(1, 16):
 
     final_IC = sum(all_piles_IC) / ko
     final_IC_list.append(final_IC)
-
+print("")
+print("Performed key founder operations")
+print("")
 target = 0.065
 closest = min(final_IC_list, key=lambda x: abs(x - target))
-print(closest)
 t_pilelen=len(final_IC_list)
 fbest_index=int(0)
 for best in range(0, t_pilelen):
     if final_IC_list[best]==closest:
         fbest_index=best
 fbest_index+=1
-print(fbest_index)
+print("Key length found: ",fbest_index)
 key_length=fbest_index
 
 piles=[[] for _ in range(key_length)]
@@ -66,7 +74,9 @@ while index<key_length:
         if input_paragraph[a]>='A' and input_paragraph[a]<='Z' or input_paragraph[a]>='a'and input_paragraph[a]<='z':
             piles[index].append(input_paragraph[a])
     index+=1
-
+print("")
+print("Ordered all characters in",key_length," piles")
+print("")
 all_piles_IC=[]
 for e in range(0, key_length):
       pile_alpha_sum=int(0)
@@ -94,14 +104,16 @@ for e in range(0, key_length):
       pile_length=pile_length*(pile_length-1)
       f_IC=pile_alpha_sum/pile_length
       all_piles_IC.append(f_IC)
+print("")
 
-print(all_piles_IC)
+
 average=int(0)
 length_pileIC=len(all_piles_IC)
 for f in range(0, length_pileIC):
      average+=all_piles_IC[f]
 average=average/key_length
-print(average)
+print("Performed all IC Calculations on IC with average: ",average)
+print("")
 
 english_frequency={'A': 8.17, 'B': 1.49, 'C': 2.78, 'D': 4.25, 'E': 12.70, 'F': 2.23,
     'G': 2.02, 'H': 6.09, 'I': 6.97, 'J': 0.15, 'K': 0.77, 'L': 4.03,
@@ -149,7 +161,10 @@ for up in range(0, key_length):
                chi=(countalphas-frequency)**2/frequency
                chisum+=chi
           storing_results[up].append(chisum)
-
+print("")
+print("Performed chi calculations ")
+print("")
+print("Key Found!!!!")
 final_answer=[]
 for un in range(0, key_length):
      total_length=len(storing_results[un])
@@ -162,5 +177,5 @@ for un in range(0, key_length):
                index_in_result=find
      characterf=english_number_rev[index_in_result]
      final_answer.append(characterf)
-
+print("")
 print(final_answer)
