@@ -12,7 +12,7 @@ for ko in range(1, 16):
     index = 0
     while index < ko:
         for a in range(index, t_length, ko):
-            if input_paragraph[a].isalpha():
+            if input_paragraph[a]>='A' and input_paragraph[a]<='Z' or input_paragraph[a]>='a'and input_paragraph[a]<='z':
                 piles[index].append(input_paragraph[a])
         index += 1
 
@@ -47,7 +47,6 @@ for ko in range(1, 16):
     final_IC = sum(all_piles_IC) / ko
     final_IC_list.append(final_IC)
 
-print(final_IC_list)
 target = 0.065
 closest = min(final_IC_list, key=lambda x: abs(x - target))
 print(closest)
@@ -63,7 +62,7 @@ key_length=fbest_index
 piles=[[] for _ in range(key_length)]
 index=0
 while index<key_length:
-    for a in range(index, t_length, 6):
+    for a in range(index, t_length, key_length):
         if input_paragraph[a]>='A' and input_paragraph[a]<='Z' or input_paragraph[a]>='a'and input_paragraph[a]<='z':
             piles[index].append(input_paragraph[a])
     index+=1
