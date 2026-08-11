@@ -1,10 +1,65 @@
 import math
 
 print("Vigenere cipher key founder")
-input_paragraph=input("Paste your paragraph here: ")
+input_paragraph = input("Paste your paragraph here: ")
 t_length = len(input_paragraph)
 print(t_length)
-key_length=6
+
+final_IC_list = []
+
+for ko in range(1, 16):
+    piles = [[] for _ in range(ko)]
+    index = 0
+    while index < ko:
+        for a in range(index, t_length, ko):
+            if input_paragraph[a].isalpha():
+                piles[index].append(input_paragraph[a])
+        index += 1
+
+    all_piles_IC = []
+    for e in range(0, ko):
+        pile_alpha_sum = 0
+        used_character = ['0']
+        used_character_i = 1
+        pile_length = len(piles[e])
+        f_index = len(piles[e])
+
+        for b in range(0, f_index):
+            result = 1
+            alpha_count = 0
+            for d in range(0, used_character_i):
+                if piles[e][b] == used_character[d]:
+                    result = 0
+            if result == 1:
+                zero_length = len(piles[e])
+                for c in range(0, zero_length):
+                    if piles[e][b] == piles[e][c]:
+                        used_character.append(piles[e][b])
+                        used_character_i = len(used_character)
+                        alpha_count += 1
+            t_pile_sum = alpha_count * (alpha_count - 1)
+            pile_alpha_sum += t_pile_sum
+
+        denom = pile_length * (pile_length - 1)
+        f_IC = pile_alpha_sum / denom if denom != 0 else 0
+        all_piles_IC.append(f_IC)
+
+    final_IC = sum(all_piles_IC) / ko
+    final_IC_list.append(final_IC)
+
+print(final_IC_list)
+target = 0.065
+closest = min(final_IC_list, key=lambda x: abs(x - target))
+print(closest)
+t_pilelen=len(final_IC_list)
+fbest_index=int(0)
+for best in range(0, t_pilelen):
+    if final_IC_list[best]==closest:
+        fbest_index=best
+fbest_index+=1
+print(fbest_index)
+key_length=fbest_index
+
 piles=[[] for _ in range(key_length)]
 index=0
 while index<key_length:
