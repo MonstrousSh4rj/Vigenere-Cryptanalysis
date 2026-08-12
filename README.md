@@ -74,7 +74,7 @@ Compile and run `Vigenere_Cipher.cpp`. The program presents a menu to encrypt or
 Run the key length finder first:
 
 ```
-python3 find_key_length.py
+python3 cryptanalysis.py
 ```
 
 Paste in the ciphertext when prompted. The script prints the average IC for every key length from 1 to 15 and reports its best guess.
