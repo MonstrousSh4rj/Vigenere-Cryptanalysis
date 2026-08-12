@@ -3,6 +3,7 @@ import math
 print("===========================")
 print("")
 print("Vigenere cipher key founder")
+print("")
 print("===========================")
 print("")
 print("Paste your paragraph here: ")
@@ -30,7 +31,6 @@ for ko in range(1, 16):
         used_character_i = 1
         pile_length = len(piles[e])
         f_index = len(piles[e])
-
         for b in range(0, f_index):
             result = 1
             alpha_count = 0
