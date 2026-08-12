@@ -5,8 +5,8 @@ This project implements the Vigenere cipher in C++ (encryption and decryption, i
 ## Contents
 
 - `Vigenere_Cipher.cpp` — encrypts and decrypts text or files using a Vigenere cipher
-- `find_key_length.py` — scans candidate key lengths and scores each using Index of Coincidence
-- `find_key_letters.py` — recovers the actual key letters using chi-squared frequency analysis
+- `cryptanalysis.py` — scans candidate key lengths and scores each using Index of Coincidence
+- `cryptanalysis.py` — recovers the actual key letters using chi-squared frequency analysis
 - (optional) a combined script that runs the full pipeline end to end
 
 ## Background: how the Vigenere cipher works
